@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
-require './vendor/autoload.php';
- 
-use Intervention\Image\Image\ImageManagerStatic as Image;
+
 
 
 
@@ -120,8 +120,9 @@ class AdminController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
-        // Upload Admin Image
         if($request->hasFile('admin_image')){
+            $manager = new ImageManager(new Driver());
+
             $image_tmp = $request->file('admin_image');
             if($image_tmp->isValid()){
                 // Get image extension
@@ -129,12 +130,21 @@ class AdminController extends Controller
                 $extension = $image_tmp->getClientOriginalExtension();
 
                 // Generate new image name
-                $imageName = rand(111,99999).''.$extension;
+                $imageName = rand(111,99999).'.'.$extension;
                 $image_path = 'admin/images/photos'.$imageName;
                 
-                Image::make($image_tmp)->save($image_path);
+                $image = $manager->read($image_tmp);
+                $image->scale(width: 300);
+                $image->toPng()->save($image_path);
             }
+
+        }elseif (!empty($data['current_image'])) {
+            $imageName = $data['current_image'];
+        }else{
+            $imageName = "";
         }
+        
+       
 
         // Update Admin details
         Admin::where('email', Auth::guard('admin')->user()->email)->update(['name'=>$data['admin_name'],'mobile'=>$data['admin_mobile'],'image'=>$imageName]);
@@ -144,11 +154,9 @@ class AdminController extends Controller
 
 
       }  
-
-        return view('admin.settings.update_details');
+      return view('admin.settings.update_details');
     }
-       
-    }
+}
    
    
 
