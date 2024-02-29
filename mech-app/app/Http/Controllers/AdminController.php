@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -46,6 +47,8 @@ class AdminController extends Controller
     
     // Admin Dashboard
     public function adminDashboard(){
+
+        Session::put('page', 'dashboard');
         // echo "<pre>"; print_r(Auth::guard('admin')->user()); die;
         
         return view('admin.dashboard');
@@ -60,6 +63,7 @@ class AdminController extends Controller
 
     //Update Admin Password
     public function updatePassword(Request $request){
+        Session::put('page', 'update-password');
         if($request->isMethod('post')){
             $data = $request->all();
 
@@ -98,6 +102,7 @@ class AdminController extends Controller
 
     // Update Admin Details
     public function updateDetails(Request $request){
+        Session::put('page', 'update-details');
       if($request->isMethod('post')){
         
         $data = $request->all();
@@ -131,7 +136,7 @@ class AdminController extends Controller
 
                 // Generate new image name
                 $imageName = rand(111,99999).'.'.$extension;
-                $image_path = 'admin/images/photos'.$imageName;
+                $image_path = 'admin/images/photos/'.$imageName;
                 
                 $image = $manager->read($image_tmp);
                 $image->scale(width: 300);

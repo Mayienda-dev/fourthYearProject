@@ -1,37 +1,55 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
+
+    @if(Session::get('page')=="dashboard")
+        @php $active ="active" @endphp
+    @else
+      @php $active = "" @endphp
+    @endif
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('admin/dashboard') }}">
+      <a class="nav-link {{ $active }} " href="{{ url('admin/dashboard') }}">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
+    @if(Session::get('page')=="update-details"|| Session::get('page')=="update-password")
+      @php $active ="active" @endphp
+    @else
+        @php $active = "" @endphp
+    @endif
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+      <a class="nav-link {{ $active }}" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="icon-layout menu-icon"></i>
         <span class="menu-title">Settings</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-password') }}">Update Admin Password</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-details') }}">Update Admin Details</a></li>
+          
+        @if(Session::get('page')=="update-password")
+          @php $active ="active" @endphp
+        @else
+          @php $active = "" @endphp
+        @endif
+          <li class="nav-item"> <a class="nav-link {{ $active }}" href="{{ url('admin/update-password') }}">Update Admin Password</a></li>
+          @if(Session::get('page')=="update-password")
+            @php $active ="active" @endphp
+          @else
+            @php $active = "" @endphp
+          @endif
+          <li class="nav-item"> <a class="nav-link {{ $active }}" href="{{ url('admin/update-details') }}">Update Admin Details</a></li>
           
         </ul>
       </div>
     </li>
+
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+      <a class="nav-link" href="{{ url('admin/cms-pages') }}">
         <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">Form elements</span>
-        <i class="menu-arrow"></i>
+        <span class="menu-title">CMS Pages</span>
       </a>
-      <div class="collapse" id="form-elements">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-        </ul>
-      </div>
     </li>
+    
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
         <i class="icon-bar-graph menu-icon"></i>
