@@ -51,24 +51,33 @@
               <form class="pt-3" action="{{ url('admin/login') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                  <input name="email" type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input name="email" type="email" class="form-control form-control-lg" id="email" placeholder="Email" @if(isset($_COOKIE["email"])) value="{{ $_COOKIE["email"] }}" @endif>
                 </div>
                 <div class="form-group">
-                  <input name="password" type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input name="password" type="password" class="form-control form-control-lg" id="password" placeholder="Password" @if(isset($_COOKIE["password"])) value="{{ $_COOKIE["password"] }}" @endif>
                 </div>
-                <div class="mt-3">
+                <div class="col-4">
                   <button type="submit" class="btn btn-primary">SIGN IN</button>
                   {{-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="">SIGN IN</a> --}}
                 </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
+                {{-- <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
+                    <label for="remember" class="form-check-label text-muted">
+                      <input type="checkbox" id="remember" class="remember" class="form-check-input">
                       Keep me signed in
                     </label>
                   </div>
                   <a href="#" class="auth-link text-black">Forgot password?</a>
-                </div>
+                </div> --}}
+                <div class="row">
+                  <div class="col-8">
+                    <div class="icheck-primary">
+                      <input type="checkbox" id="remember" name="remember" @if(isset($_COOKIE["email"])) checked="" @endif>
+                      <label for="remember">
+                        Remember Me
+                      </label>
+                    </div>
+                  </div>
                 
               </form>
             </div>
