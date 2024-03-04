@@ -74,6 +74,8 @@
   <!-- End custom js for this page-->
   {{-- Custom js --}}
   <script src="{{ url('admin/js/custom.js') }}"></script>
+  {{-- Sweet alert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

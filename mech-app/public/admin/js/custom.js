@@ -51,4 +51,38 @@ $(document).on("click",".updateCmsPageStatus", function(){
         }
     })
 })
+// Confirm the deletion of CMS Page
+// $(document).on("click",".confirmDelete", function(){
+   
+//     var name = $(this).attr('name');
+//     if(confirm('Are you sure to delete this'+name+'?')){
+//         return true;
+//     }
+//     return false;
+// })
+
+// Confirm Deletion with sweet alert
+$(document).on("click", ".confirmDelete", function(){
+   var record = $(this).attr('record');
+   var recordid = $(this).attr('recordid');
+   Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+      window.location.href = "/admin/delete-"+record+"/"+recordid;
+    }
+  });
+  
+})
 });

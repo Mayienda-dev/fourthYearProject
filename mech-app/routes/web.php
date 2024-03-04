@@ -64,6 +64,9 @@ Route::prefix('/admin')->group(function (){
         Route::post('update-cms-pages-status', [CmsController::class, 'update']);
 
         // Add CMS Page
-        Route::match(['get', 'post'], 'add-edit-cms-page', [CmsController::class, 'edit']);
+        Route::match(['get', 'post'], 'add-edit-cms-page/{id?}', [CmsController::class, 'edit']);
+
+        // Delete CMS Page
+        Route::get('delete-cms-page/{id?}', [CmsController::class, 'destroy']);
     });
 });

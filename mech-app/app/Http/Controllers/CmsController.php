@@ -53,6 +53,8 @@ class CmsController extends Controller
            $message = "Cms Page Succesfully Created";
         }else{
             $title = "Edit CMS Page";
+            $cmspage = CmsPage::find($id);
+            $message = "Cms Page updated succesfully";
         }
         
         if($request->isMethod('post')){
@@ -88,7 +90,7 @@ class CmsController extends Controller
 
         }
 
-        return view('admin.pages.add_edit_cmspage')->with(compact('title'));
+        return view('admin.pages.add_edit_cmspage')->with(compact('title', 'cmspage'));
     }
 
     /**
@@ -115,8 +117,10 @@ class CmsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CmsPage $cmsPage)
+    public function destroy($id)
     {
-        //
+        CmsPage::where('id', $id)->delete();
+
+        return redirect()->back()->with('success_message', 'CMS page deeleted succesfully');
     }
 }
