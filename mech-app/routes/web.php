@@ -68,5 +68,17 @@ Route::prefix('/admin')->group(function (){
 
         // Delete CMS Page
         Route::get('delete-cms-page/{id?}', [CmsController::class, 'destroy']);
+
+        // Sub Admin 
+        Route::get('subadmins', [AdminController::class, 'subadmins']);
+
+        // Sub admin status
+        Route::post('update-subadmin-status', [AdminController::class, 'updateSubadminStatus']);
+
+        // Add Edit Subadmin
+        Route::match(['get', 'post'], 'add-edit-subadmin/{id?}', [AdminController::class, 'addEditSubadmin']);
+
+        // Delete Sub admins
+        Route::get('delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
     });
 });

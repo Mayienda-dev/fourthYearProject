@@ -51,6 +51,34 @@ $(document).on("click",".updateCmsPageStatus", function(){
         }
     })
 })
+
+// Update Subadmin status
+
+$(document).on("click",".updateSubadminStatus", function(){
+    var status = $(this).children("i").attr("status");
+    var subadmin_id = $(this).attr("subadmin_id");
+    // alert(page_id); 
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type:'post',
+        url:'/admin/update-subadmin-status',
+        data:{status:status,subadmin_id:subadmin_id},
+        success:function(resp){
+            if(resp['status']==0){
+
+                $("#page-"+subadmin_id).html("<i class = 'fa fa toggle-off' style: 'color:grey'; 'font-size: 36px' status: 'Inactive'></i>");
+            }else if(resp['status']==1){
+                $("#page-"+subadmin_id).html("<i class = 'fa fa toggle-on' style:'font-size:36px'; 'color:blue' status: 'Active'></i>");
+
+            }
+           
+        },error:function(){
+            alert("Error");
+        }
+    })
+})
 // Confirm the deletion of CMS Page
 // $(document).on("click",".confirmDelete", function(){
    

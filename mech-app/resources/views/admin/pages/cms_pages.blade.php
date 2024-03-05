@@ -18,7 +18,7 @@
           
        
         <div class="table-responsive">
-          <table class="table">
+          <table class="table" id="cmspages">
             <thead>
               <tr>
                 <th>ID</th>
