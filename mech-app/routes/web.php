@@ -78,6 +78,9 @@ Route::prefix('/admin')->group(function (){
         // Add Edit Subadmin
         Route::match(['get', 'post'], 'add-edit-subadmin/{id?}', [AdminController::class, 'addEditSubadmin']);
 
+        // Setting Roles for Subadmins
+        Route::match(['get', 'post'], 'update-role/{id}', [AdminController::class, 'updateRole']);
+
         // Delete Sub admins
         Route::get('delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
     });
