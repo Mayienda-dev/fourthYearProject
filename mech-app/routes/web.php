@@ -83,5 +83,8 @@ Route::prefix('/admin')->group(function (){
 
         // Delete Sub admins
         Route::get('delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
+
+        // Update Vendor Details
+        Route::match(['get', 'post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
     });
 });

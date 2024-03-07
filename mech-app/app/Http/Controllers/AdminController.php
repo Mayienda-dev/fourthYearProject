@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\AdminsRole;
+use App\Models\Vendors;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Session;
@@ -172,6 +173,86 @@ class AdminController extends Controller
       }  
       return view('admin.settings.update_details');
     }
+
+    // Update Vendor Details
+    public function updateVendorDetails(Request $request, $slug){
+        if($slug=="personal"){
+
+            if($request->isMethod('post')){
+                $data = $request->all();
+
+                // echo "<pre>"; print_r($data); die;
+                $rules = [
+                    'vendor_name' => 'required|max:255',
+                    'vendor_mobile' => 'required|numeric|digits:10',
+                    'vendor_county' => 'required',
+                    'physical_address' => 'required',
+                    'vendor_niche' => 'required',
+                    'vendor_image' => 'image',
+                ];
+        
+                $customMessages = [
+                    
+                    'vendor_name.required' => 'Name is required',
+                    'vendor_mobile.required' => 'Mobile is required',
+                    'vendor_mobile.numeric' => 'Valid phone number is required',
+                    'vendor_mobile.digits' => 'Valid phone number is required',
+                    'vendor_county.required' => 'County is required',
+                    'physical_address.required' => 'Physical address is required',
+                    'vendor_niche.required' => 'Niche is required',
+                    'vendor_image.image' => 'Valid image is required',
+                    
+                ];
+        
+                $this->validate($request, $rules, $customMessages);
+        
+                if($request->hasFile('vendor_image')){
+                    $manager = new ImageManager(new Driver());
+        
+                    $image_tmp = $request->file('vendor_image');
+                    if($image_tmp->isValid()){
+                        // Get image extension
+        
+                        $extension = $image_tmp->getClientOriginalExtension();
+        
+                        // Generate new image name
+                        $imageName = rand(111,99999).'.'.$extension;
+                        $image_path = 'admin/images/photos/'.$imageName;
+                        
+                        $image = $manager->read($image_tmp);
+                        $image->scale(width: 300);
+                        $image->toPng()->save($image_path);
+                    }
+        
+                }elseif (!empty($data['current_image'])) {
+                    $imageName = $data['current_image'];
+                }else{
+                    $imageName = "";
+                }
+                
+               
+        
+                // Update in Admin Table
+                Admin::where('id', Auth::guard('admin')->user()->id)->update(['name'=>$data['vendor_name'],'mobile'=>$data['vendor_mobile'],'image'=>$imageName]);
+
+                // Update in Vendors Table
+                Vendors::where('id', Auth::guard('admin')->user()->vendor_id)->update(['name'=>$data['vendor_name'], 'mobile'=>$data['vendor_mobile'], 'county'=>$data['vendor_county'], 'physical_address' => $data['physical_address'], 'niche'=>$data['vendor_niche']]);
+        
+                
+                return redirect()->back()->with('success_message', 'Admin Details updated Succesfully');
+        
+            }
+            $vendorDetails = Vendors::where('id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
+
+
+        }elseif($slug=="business"){
+
+        }else if($slug=="payment"){
+
+        }
+        return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
+
+    }
     // Display Sub admins
     public function subadmins(){
         Session::put('page', 'subadmins');
@@ -238,10 +319,10 @@ class AdminController extends Controller
 
             $this->validate($request, $rules, $customMessages);
       
-        if($request->hasFile('image')){
+        if($request->hasFile('vendor_image')){
             $manager = new ImageManager(new Driver());
 
-            $imageTmp = $request->file('image');
+            $imageTmp = $request->file('vendor_image');
 
             if($imageTmp->isValid()){
 

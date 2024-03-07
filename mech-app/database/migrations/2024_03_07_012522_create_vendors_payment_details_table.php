@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_vendors', function (Blueprint $table) {
+        Schema::create('vendors_payment_details', function (Blueprint $table) {
             $table->id();
-            
+            $table->integer('vendor_id');
+            $table->string('mpesaname');
+            $table->string('mpesamobile');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_vendors');
+        Schema::dropIfExists('vendors_payment_details');
     }
 };

@@ -9,7 +9,7 @@
           <div class="card-body">
             <h4 class="card-title">Settings</h4>
             <p class="card-description">
-              Update Admin Details
+              <strong>Update Admin Details</strong>
             </p>
 
             @if(Session::has('error_message'))
@@ -47,6 +47,10 @@
               <div class="form-group">
                 <label for="admin_name">Username</label>
                 <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ Auth::guard('admin')->user()->name }}" placeholder="Username">
+              </div>
+              <div class="form-group">
+                <label for="admin_type">Admin Type</label>
+                <input type="text" class="form-control" name="admin_type" id="admin_type" value="{{ Auth::guard('admin')->user()->type }}" placeholder="Admin Type" readonly="" style="background-color: whitesmoke">
               </div>
               <div class="form-group">
                 <label for="admin_email">Email address</label>
