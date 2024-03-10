@@ -46,7 +46,7 @@
                   @if($subadmin->status==1)
                   <a class="updateSubadminStatus" id="subadmin-{{ $subadmin->id }}" subadmin_id= "{{ $subadmin->id}}" href="javascript:void(0)"><i class="fa fa-toggle-on" status = "Active" style="font-size:26px"> </i></a>
                 @else
-                <a class="updateSubadminStatus" id="page-{{ $subadmin->id }}" subadmin_id= "{{ $subadmin->id }}" href="javascript:void(0)"><i class="fa fa-toggle-off" status = "Inactive" style="font-size:26px; color:grey"> </i></a>
+                <a class="updateSubadminStatus" id="subadmin-{{ $subadmin->id }}" subadmin_id= "{{ $subadmin->id }}" href="javascript:void(0)"><i class="fa fa-toggle-off" status = "Inactive" style="font-size:26px; color:grey"> </i></a>
                 @endif
                 &nbsp;&nbsp;
                 <a href="{{ url('admin/add-edit-subadmin/'.$subadmin->id) }}"><i class="fa fa-edit" style="font-size:26px"></i></a>

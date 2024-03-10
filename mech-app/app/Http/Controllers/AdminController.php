@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\AdminsRole;
 use App\Models\Vendors;
+use App\Models\VendorsBusinessDetail;
+use App\Models\VendorsPaymentDetail;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Session;
@@ -246,8 +248,117 @@ class AdminController extends Controller
 
 
         }elseif($slug=="business"){
+            $vendorDetails = VendorsBusinessDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
+            // dd($vendorDetails);
+            if($request->isMethod('post')){
+                $data = $request->all();
+
+                // echo "<pre>"; print_r($data); die;
+                $rules = [
+                    'garage_name' => 'required|max:255',
+                    'garage_address' => 'required',
+                    'garage_county' => 'required',
+                    'garage_mobile' => 'required|numeric',
+                    'garage_email' => 'required|email',
+                    'address_proof' => 'required',
+                    'service' => 'required',
+                    'address_proof_image' => 'image',
+                ];
+        
+                $customMessages = [
+                    
+                    'garage_name.required' => 'Name is required',
+                    'garage_mobile.required' => 'Mobile is required',
+                    'garage_mobile.numeric' => 'Valid phone number is required',
+                    
+                    'garage_county.required' => 'County is required',
+                    'garage_address.required' => 'Physical address is required',
+                    'garage_email.required' => 'Garage/Mechanic email is required',
+                    'garage_email.email' => 'Valid Email is required', 
+                    'garage_niche.required' => 'Niche is required',
+                    'address_proof.required' => 'Address Proof Choice is required',
+                    'service.required' => 'Service field is required',
+                    'address_proof_image.image' => 'Valid image is required',
+                    
+                    
+                ];
+        
+                $this->validate($request, $rules, $customMessages);
+        
+                if($request->hasFile('address_proof_image')){
+                    $manager = new ImageManager(new Driver());
+        
+                    $image_tmp = $request->file('address_proof_image');
+                    if($image_tmp->isValid()){
+                        // Get image extension
+        
+                        $extension = $image_tmp->getClientOriginalExtension();
+        
+                        // Generate new image name
+                        $imageName = rand(111,99999).'.'.$extension;
+                        $image_path = 'admin/images/proofs/'.$imageName;
+                        
+                        $image = $manager->read($image_tmp);
+                        $image->scale(width: 300);
+                        $image->toPng()->save($image_path);
+                    }
+        
+                }elseif (!empty($data['current_address_image'])) {
+                    $imageName = $data['current_address_image'];
+                }else{
+                    $imageName = "";
+                }
+                
+               
+        
+
+
+                // Update in Vendors Table
+                VendorsBusinessDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->update(['garage_name'=>$data['garage_name'], 'service'=>$data['service'], 'garage_mobile'=>$data['garage_mobile'], 'garage_county'=>$data['garage_county'], 'garage_address' => $data['garage_address'], 'garage_email'=>$data['garage_email'], 'address_proof' => $data['address_proof'] , 'address_proof_image' => $imageName]);
+        
+                
+                return redirect()->back()->with('success_message', 'Business details updated succesfully');
+        
+            }
+
 
         }else if($slug=="payment"){
+            if($request->isMethod('post')){
+                $data = $request->all();
+
+                // echo "<pre>"; print_r($data); die;
+                $rules = [
+                    'mpesaname' => 'required|max:255',
+                    'mpesamobile' => 'required|numeric',
+                    
+                ];
+        
+                $customMessages = [
+                    
+                    'mpesaname.required' => 'Mpesa name is required',
+                    'mpesamobile.required' => 'Mpesa mobile number is required',
+                    'mpesamobile.numeric' => 'Valid phone number is required',
+                    
+                    
+                ];
+        
+                $this->validate($request, $rules, $customMessages);
+        
+                
+               
+        
+
+
+                // Update in Vendors Table
+                VendorsPaymentDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->update(['mpesaname'=>$data['mpesaname'], 'mpesamobile'=>$data['mpesamobile']]);
+        
+                
+                return redirect()->back()->with('success_message', 'Payment details updated succesfully');
+        
+            }
+
+            $vendorDetails = VendorsPaymentDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
+          
 
         }
         return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
@@ -319,10 +430,10 @@ class AdminController extends Controller
 
             $this->validate($request, $rules, $customMessages);
       
-        if($request->hasFile('vendor_image')){
+        if($request->hasFile('image')){
             $manager = new ImageManager(new Driver());
 
-            $imageTmp = $request->file('vendor_image');
+            $imageTmp = $request->file('image');
 
             if($imageTmp->isValid()){
 
@@ -433,6 +544,22 @@ class AdminController extends Controller
 
 
         return view('admin.subadmins.update_roles')->with(compact('title', 'id', 'subadminRoles' ));
+    }
+
+    public function admins($type=null){
+
+       $admins = Admin::query();
+       if(!empty($type)){
+
+        $admins = $admins->where('type', $type);
+
+       }else{
+
+       }
+
+       $admins = $admins->get()->toArray();
+       dd($admins);
+
     }
 }
    

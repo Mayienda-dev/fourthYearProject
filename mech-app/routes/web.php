@@ -86,5 +86,8 @@ Route::prefix('/admin')->group(function (){
 
         // Update Vendor Details
         Route::match(['get', 'post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
+
+        // View Vendors
+        Route::get('admins/{type?}', [AdminController::class, 'admins']);
     });
 });

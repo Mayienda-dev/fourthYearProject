@@ -64,6 +64,7 @@
                         <input type="file" class="form-control" name="image" id="image">
                         @if(!empty($subadmindata['image']))
                           <a target="_blank" href="{{ url('admin/images/photos/'.$subadmindata['image']) }}">View Photo</a>
+                        @else
                           <input type="hidden" name="current_image" value="{{ $subadmindata['image'] }}">
                         @endif
                       </div>

@@ -17,11 +17,13 @@ class VendorsBusinessDetailsTableSeeder extends Seeder
             [
                 'id' =>1,
                 'vendor_id' => 1,
+                'service' => '',
                 'garage_name' => 'Dreamville Automechanical Services',
                 'garage_address' => 'Ngara',
                 'garage_county' => 'Nairobi',
                 'garage_mobile' => '0733498916',
                 'garage_email' => 'dreamville@garage.com',
+                'address_proof' => '',
                 'address_proof_image' => '',
 
             ]

@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('vendors_business_details', function (Blueprint $table) {
             $table->id();
             $table->integer('vendor_id');
+            $table->string('service');
             $table->string('garage_name');
             $table->string('garage_address');
             $table->string('garage_county');
             $table->string('garage_mobile');
             $table->string('garage_email');
+            $table->string('address_proof');
             $table->string('address_proof_image');
             $table->timestamps();
         });

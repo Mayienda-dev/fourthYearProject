@@ -105,9 +105,9 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Vendor update-details</h4>
+              <h4 class="card-title">Vendor update business details</h4>
               <p class="card-description">
-                <strong>Update Vendor Details</strong>
+                <strong>Update Vendor Mechanic/Garage Details</strong>
               </p>
   
               @if(Session::has('error_message'))
@@ -140,30 +140,60 @@
               </div>
           @endif
   
-              <form class="forms-sample" method="post" action="{{ url('admin/update-details')  }}" enctype="multipart/form-data">
+              <form class="forms-sample" method="post" action="{{ url('admin/update-vendor-details/business')  }}" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
-                  <label for="admin_name">Username</label>
-                  <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ Auth::guard('admin')->user()->name }}" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <label for="admin_type">Admin Type</label>
-                  <input type="text" class="form-control" name="admin_type" id="admin_type" value="{{ Auth::guard('admin')->user()->type }}" placeholder="Admin Type" readonly="" style="background-color: whitesmoke">
-                </div>
                 <div class="form-group">
                   <label for="admin_email">Email address</label>
                   <input  class="form-control" id="admin_email" value="{{ Auth::guard('admin')->user()->email }}" readonly="" style="background-color: whitesmoke">
                 </div>
                 <div class="form-group">
-                  <label for="admin_mobile">Mobile</label>
-                  <input type="text" class="form-control" name="admin_mobile" id="admin_mobile" value="{{ Auth::guard('admin')->user()->mobile }}" placeholder="Mobile">
+                  <label for="service">Services</label>
+                  <select class="form-control" name="service" id="service">
+                    
+                    <option value="garage"  @if($vendorDetails['service']=="garage") selected  @endif>Garage</option>
+                    <option value="towing"  @if($vendorDetails['service']=="towing") selected  @endif>Towing and flatbed services</option>
+                    <option value="consultant"  @if($vendorDetails['service']=="consultant") selected  @endif>Consultant Mechanic</option>
+                    
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="admin_image">Photo</label>
-                  <input type="file" class="form-control" name="admin_image" id="admin_image">
-                  @if(!empty(Auth::guard('admin')->user()->image))
-                    <a target="_blank" href="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}">View Photo</a>
-                    <input type="hidden" name="current_image" value="{{ Auth::guard('admin')->user()->image }}">
+                  <label for="garage_name">Garage/Mech Name</label>
+                  <input type="text" class="form-control" name="garage_name" id="garage_name" value="{{ $vendorDetails['garage_name'] }}" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <label for="garage_address">Garage Physical Address</label>
+                  <input type="text" class="form-control" name="garage_address" id="garage_address" value="{{ $vendorDetails['garage_address'] }}" placeholder="Garage Address">
+                </div>
+               
+                <div class="form-group">
+                  <label for="garage_county">County</label>
+                  <input type="text" class="form-control" name="garage_county" id="garage_county" value="{{ $vendorDetails['garage_county'] }}" placeholder="Enter Garage/Mech County">
+                </div>
+                <div class="form-group">
+                  <label for="garage_mobile">Mobile</label>
+                  <input type="text" class="form-control" name="garage_mobile" id="garage_mobile" value="{{ $vendorDetails['garage_mobile']}}" placeholder="Enter Garage/Mech Mobile">
+                </div>
+                <div class="form-group">
+                  <label for="garage_email">Garage/Mech Email</label>
+                  <input type="email" class="form-control" name="garage_email" id="garage_email" value="{{ $vendorDetails['garage_email'] }}" placeholder="Enter Garage/Mech email">
+                </div>
+                <div class="form-group">
+                  <label for="address_proof">Adress Proof</label>
+                  <select class="form-control" name="address_proof" id="address_proof">
+                    
+                    <option value="ID Image" @if($vendorDetails['address_proof']=="ID Image") selected  @endif>ID Image</option>
+                    <option value="Business Registration Image"  @if($vendorDetails['address_proof']=="Business Registration Image") selected  @endif>Business Registration Image</option>
+                    
+                    
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="address_proof_image">Address Proof Image</label>
+                  <input type="file" class="form-control" name="address_proof_image" id="address_proof_image">
+                  @if(!empty($vendorDetails['address_proof_image']))
+                    <a target="_blank" href="{{ url('admin/images/proofs/'.$vendorDetails['address_proof_image']) }}">View Photo</a>
+                    <input type="hidden" name="current_address_proof" value="{{ $vendorDetails['address_proof_image']}}">
                   @endif
                 </div>
   
@@ -186,14 +216,14 @@
       </div>
       </div>
 
-    @elseif($slug=="bank")
+    @elseif($slug=="payment")
     <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Vendor update-details</h4>
+              <h4 class="card-title">Vendor Payment Details</h4>
               <p class="card-description">
-                <strong>Update Vendor Details</strong>
+                <strong>Update Payment Details</strong>
               </p>
   
               @if(Session::has('error_message'))
@@ -226,33 +256,23 @@
               </div>
           @endif
   
-              <form class="forms-sample" method="post" action="{{ url('admin/update-details')  }}" enctype="multipart/form-data">
+              <form class="forms-sample" method="post" action="{{ url('admin/update-vendor-details/payment')  }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                  <label for="admin_name">Username</label>
-                  <input type="text" class="form-control" name="admin_name" id="admin_name" value="{{ Auth::guard('admin')->user()->name }}" placeholder="Username">
+                  <div class="form-group">
+                    <label for="admin_email">Email address</label>
+                    <input  class="form-control" id="admin_email" value="{{ Auth::guard('admin')->user()->email }}" readonly="" style="background-color: whitesmoke">
+                  </div>
+                  <label for="mpesaname">Mpesa  Full Name</label>
+                  <input type="text" class="form-control" name="mpesaname" id="mpesaname" value="{{ $vendorDetails['mpesaname'] }}" placeholder="Enter your mpesa name">
                 </div>
+               
+               
                 <div class="form-group">
-                  <label for="admin_type">Admin Type</label>
-                  <input type="text" class="form-control" name="admin_type" id="admin_type" value="{{ Auth::guard('admin')->user()->type }}" placeholder="Admin Type" readonly="" style="background-color: whitesmoke">
+                  <label for="mpesamobile">Mpesa Mobile Number</label>
+                  <input type="text" class="form-control" name="mpesamobile" id="mpesamobile" value="{{ $vendorDetails['mpesamobile'] }}" placeholder="Enter Mpesa mobile number">
                 </div>
-                <div class="form-group">
-                  <label for="admin_email">Email address</label>
-                  <input  class="form-control" id="admin_email" value="{{ Auth::guard('admin')->user()->email }}" readonly="" style="background-color: whitesmoke">
-                </div>
-                <div class="form-group">
-                  <label for="admin_mobile">Mobile</label>
-                  <input type="text" class="form-control" name="admin_mobile" id="admin_mobile" value="{{ Auth::guard('admin')->user()->mobile }}" placeholder="Mobile">
-                </div>
-                <div class="form-group">
-                  <label for="admin_image">Photo</label>
-                  <input type="file" class="form-control" name="admin_image" id="admin_image">
-                  @if(!empty(Auth::guard('admin')->user()->image))
-                    <a target="_blank" href="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}">View Photo</a>
-                    <input type="hidden" name="current_image" value="{{ Auth::guard('admin')->user()->image }}">
-                  @endif
-                </div>
-  
+                
   
   
                 <div class="form-group">
