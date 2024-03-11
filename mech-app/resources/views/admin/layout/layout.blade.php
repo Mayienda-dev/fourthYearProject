@@ -18,6 +18,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('admin/js/select.dataTables.min.css') }}">
   <link rel="stylesheet" href="{{ url('admin/vendors/select2/select2.min.css') }}">
   <link rel="stylesheet" href="{{ url('admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url('admin/vendors/mdi/css/materialdesignicons.min.css') }}">
   <!-- End plugin css for this page -->
   {{-- font awesome --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

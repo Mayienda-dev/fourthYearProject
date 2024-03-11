@@ -112,6 +112,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{ url('admin/admins/admin') }}">Admins</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/admins/subadmin') }}">Sub admins</a></li>
             <li class="nav-item"> <a class="nav-link {{ $active }}" href="{{ url('admin/admins/vendor') }}">Vendors</a></li>
+            <li class="nav-item"> <a class="nav-link {{ $active }}" href="{{ url('admin/admins') }}">All</a></li>
            
          
           

@@ -552,13 +552,15 @@ class AdminController extends Controller
        if(!empty($type)){
 
         $admins = $admins->where('type', $type);
+        $title = ucfirst($type)."s";
+        
 
        }else{
-
+        $title = "All Admins/Subadmins/Vendors";
        }
 
        $admins = $admins->get()->toArray();
-       dd($admins);
+      return view('admin.admins.admins')->with(compact('title','admins'));
 
     }
 }
