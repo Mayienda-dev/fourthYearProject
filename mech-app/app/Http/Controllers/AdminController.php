@@ -546,6 +546,7 @@ class AdminController extends Controller
         return view('admin.subadmins.update_roles')->with(compact('title', 'id', 'subadminRoles' ));
     }
 
+    // View Admins/Sub admins/Vendors
     public function admins($type=null){
 
        $admins = Admin::query();
@@ -562,6 +563,14 @@ class AdminController extends Controller
        $admins = $admins->get()->toArray();
       return view('admin.admins.admins')->with(compact('title','admins'));
 
+    }
+
+    // View Vendor Details
+    public function viewVendorDetails($id){
+        $vendorDetails = Admin::with('vendorPersonal', 'vendorBusiness', 'vendorPayment')->where('id', $id)->first();
+        $vendorDetails = json_decode(json_encode($vendorDetails), true);
+
+       return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
     }
 }
    

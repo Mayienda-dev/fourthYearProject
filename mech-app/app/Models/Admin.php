@@ -23,5 +23,17 @@ class Admin extends Authenticable
         'password',
     ];
 
+    public function vendorPersonal(){
+        return $this->belongsTo('App\Models\Vendors', 'vendor_id' );
+    }
+    public function vendorBusiness(){
+        return $this->belongsTo('App\Models\VendorsBusinessDetail', 'vendor_id' );
+    }
+    public function vendorPayment(){
+        return $this->belongsTo('App\Models\VendorsPaymentDetail', 'vendor_id' );
+    }
+
+
+
 
 }
