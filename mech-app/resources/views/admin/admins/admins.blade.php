@@ -40,11 +40,20 @@
                 <td>{{ $admin['type'] }}</td>
                 <td><img src= "{{asset('admin/images/photos/'.$admin['image'])  }}"></td>
                 <td>
-                    @if($admin['status'] == 1)
-                       <i style="font-size:25px" class="mdi mdi-bookmark-check"></i>
-                    @else
-                    <i style = "font-size: 25px"class="mdi mdi-bookmark-outline"></i>  
-                    @endif
+                  @if($admin['type']=="vendor")
+                      @if($admin['status'] == 1)
+                        <a class ="updateVendorStatus" id ="admin-{{ $admin['id'] }}" admin_id= "{{ $admin['id'] }}" href="javascript:void(0)"><i style="font-size:25px" class="mdi mdi-bookmark-check"  status = "Active"></i>
+                      @else
+                          <a class = "updateVendorStatus" id = "admin- {{ $admin['id'] }}" admin_id = "{{ $admin['id'] }}" href="javascript:void(0)" ><i style = "font-size: 25px" status = "Inactive" class="mdi mdi-bookmark-outline"></i>  
+                      @endif
+                  @else
+                      @if($admin['status'] == 1)
+                        <i style="font-size:25px" class="mdi mdi-bookmark-check"></i>
+                      @else
+                        <i style = "font-size: 25px" status = "Inactive" class="mdi mdi-bookmark-outline"></i>  
+                      @endif
+                  @endif
+                    
                  </td>
                 <td>
                     @if($admin['type']=="vendor")

@@ -92,5 +92,8 @@ Route::prefix('/admin')->group(function (){
 
         // View vendor details
         Route::get('view-vendor-details/{id}', [AdminController::class, 'viewVendorDetails']);
+
+        // Update Vendor Status
+        Route::post('update-vendor-status', [AdminController::class, 'updateVendorStatus']);
     });
 });
