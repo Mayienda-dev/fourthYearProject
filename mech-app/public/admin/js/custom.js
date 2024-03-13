@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $(".nav-item").removeClass("active");
+    $(".nav-link").removeClass("active");
 //  Check admin password is correct or not
 $("#current_pwd").keyup(function(){
     var current_pwd = $("#current_pwd").val();

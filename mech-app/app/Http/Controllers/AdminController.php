@@ -13,6 +13,7 @@ use App\Models\VendorsPaymentDetail;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 
 
@@ -77,7 +78,7 @@ class AdminController extends Controller
 
     //Update Admin Password
     public function updatePassword(Request $request){
-        Session::put('page', 'update-password');
+        Session::put('page', 'update_password');
         if($request->isMethod('post')){
             $data = $request->all();
 
@@ -116,7 +117,7 @@ class AdminController extends Controller
 
     // Update Admin Details
     public function updateDetails(Request $request){
-        Session::put('page', 'update-details');
+        Session::put('page', 'update_details');
       if($request->isMethod('post')){
         
         $data = $request->all();
@@ -179,6 +180,7 @@ class AdminController extends Controller
     // Update Vendor Details
     public function updateVendorDetails(Request $request, $slug){
         if($slug=="personal"){
+            Session::put('page', 'update_personal_details');
 
             if($request->isMethod('post')){
                 $data = $request->all();
@@ -248,6 +250,8 @@ class AdminController extends Controller
 
 
         }elseif($slug=="business"){
+
+            Session::put('page', 'update_business_details');
             $vendorDetails = VendorsBusinessDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
             // dd($vendorDetails);
             if($request->isMethod('post')){
@@ -323,6 +327,7 @@ class AdminController extends Controller
 
 
         }else if($slug=="payment"){
+            Session::put('page', 'update_payment_details');
             if($request->isMethod('post')){
                 $data = $request->all();
 
@@ -554,10 +559,12 @@ class AdminController extends Controller
 
         $admins = $admins->where('type', $type);
         $title = ucfirst($type)."s";
+        Session::put('page', 'view_'.Str::lower($title));
         
 
        }else{
         $title = "All Admins/Subadmins/Vendors";
+        Session::put('page', 'view_all');
        }
 
        $admins = $admins->get()->toArray();
