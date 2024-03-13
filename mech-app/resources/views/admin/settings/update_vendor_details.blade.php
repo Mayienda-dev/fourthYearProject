@@ -62,7 +62,16 @@
               </div>
               <div class="form-group">
                 <label for="vendor_county">County</label>
-                <input type="text" class="form-control" name="vendor_county" id="vendor_county" value=" {{ $vendorDetails['county'] }} " placeholder="Enter county">
+                {{-- <input type="text" class="form-control" name="vendor_county" id="vendor_county" value=" {{ $vendorDetails['county'] }} " placeholder="Enter county"> --}}
+                <select name="vendor_county" id="vendor_county" class="form-control" style="color: #495057">
+                  <option value="">Select county</option>
+                    @foreach($counties as $county)
+                    <option value="{{ $county['name'] }}" @if($county['name']==$vendorDetails['county']) selected @endif>{{ $county['name'] }}</option>
+
+                    @endforeach
+
+              
+                </select>
               </div>
               <div class="form-group">
                 <label for="physical_address">Physical Address</label>
@@ -148,7 +157,7 @@
                 </div>
                 <div class="form-group">
                   <label for="service">Services</label>
-                  <select class="form-control" name="service" id="service">
+                  <select class="form-control" name="service" id="service" style="color: #495057">
                     
                     <option value="garage"  @if($vendorDetails['service']=="garage") selected  @endif>Garage</option>
                     <option value="towing"  @if($vendorDetails['service']=="towing") selected  @endif>Towing and flatbed services</option>
@@ -166,8 +175,16 @@
                 </div>
                
                 <div class="form-group">
-                  <label for="garage_county">County</label>
-                  <input type="text" class="form-control" name="garage_county" id="garage_county" value="{{ $vendorDetails['garage_county'] }}" placeholder="Enter Garage/Mech County">
+                  
+                  <select name="garage_county" id="garage_county" class="form-control" style="color: #495057">
+                    <option value="">Select county</option>
+                      @foreach($counties as $county)
+                      <option value="{{ $county['name'] }}" @if($county['name']==$vendorDetails['garage_county']) selected @endif>{{ $county['name'] }}</option>
+  
+                      @endforeach
+  
+                
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="garage_mobile">Mobile</label>
@@ -179,7 +196,7 @@
                 </div>
                 <div class="form-group">
                   <label for="address_proof">Adress Proof</label>
-                  <select class="form-control" name="address_proof" id="address_proof">
+                  <select class="form-control" name="address_proof" id="address_proof" style="color: #495057">
                     
                     <option value="ID Image" @if($vendorDetails['address_proof']=="ID Image") selected  @endif>ID Image</option>
                     <option value="Business Registration Image"  @if($vendorDetails['address_proof']=="Business Registration Image") selected  @endif>Business Registration Image</option>
@@ -193,7 +210,7 @@
                   <input type="file" class="form-control" name="address_proof_image" id="address_proof_image">
                   @if(!empty($vendorDetails['address_proof_image']))
                     <a target="_blank" href="{{ url('admin/images/proofs/'.$vendorDetails['address_proof_image']) }}">View Photo</a>
-                    <input type="hidden" name="current_address_proof" value="{{ $vendorDetails['address_proof_image']}}">
+                    <input type="hidden" name="current_address_image" value="{{ $vendorDetails['address_proof_image']}}">
                   @endif
                 </div>
   

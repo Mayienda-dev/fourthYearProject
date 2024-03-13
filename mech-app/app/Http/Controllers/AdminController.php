@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\AdminsRole;
+use App\Models\County;
 use App\Models\Vendors;
 use App\Models\VendorsBusinessDetail;
 use App\Models\VendorsPaymentDetail;
@@ -243,7 +244,7 @@ class AdminController extends Controller
                 Vendors::where('id', Auth::guard('admin')->user()->vendor_id)->update(['name'=>$data['vendor_name'], 'mobile'=>$data['vendor_mobile'], 'county'=>$data['vendor_county'], 'physical_address' => $data['physical_address'], 'niche'=>$data['vendor_niche']]);
         
                 
-                return redirect()->back()->with('success_message', 'Admin Details updated Succesfully');
+                return redirect()->back()->with('success_message', 'Vendor Details updated Succesfully');
         
             }
             $vendorDetails = Vendors::where('id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
@@ -366,7 +367,9 @@ class AdminController extends Controller
           
 
         }
-        return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
+
+        $counties = County::get()->toArray();
+        return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails', 'counties'));
 
     }
     // Display Sub admins
