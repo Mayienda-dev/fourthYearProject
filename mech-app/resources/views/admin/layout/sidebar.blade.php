@@ -63,16 +63,21 @@
         <span class="menu-title">CMS Pages</span>
       </a>
     </li>
+    @if(Auth::guard('admin')->user()->type=="admin")
     <li class="nav-item">
-      @if(Auth::guard('admin')->user()->type=="admin")
+     
       <a class="nav-link" href="{{ url('admin/subadmins') }}">
         <i class="bi bi-person"></i>
         &nbsp; &nbsp;
         <span class="menu-title">Sub admins</span>
       </a>
-      @endif
+      
     </li>
+    @endif
+
+    @if(Auth::guard('admin')->user()->type=="admin")
     <li class="nav-item">
+      
       <a @if(Session::get('page')=="view_admins" || Session::get('page')=="view_subadmins" || Session::get('page')=="view_vendors" || Session::get('page')=="view_all")  style="background: #4B49AC !important; color: #fff !important"  @endif class="nav-link " data-toggle="collapse" href="#ui-admins" aria-expanded="false" aria-controls="ui-admins">
         <i class="bi bi-person"></i>
         &nbsp;&nbsp;
@@ -82,7 +87,7 @@
       <div class="collapse" id="ui-admins">
         <ul class="nav flex-column sub-menu" style="background: #fff !important; color: #4B49AC !important;">
          
-            @if(Auth::guard('admin')->user()->type=="admin")
+           
             <li class="nav-item"> <a @if(Session::get('page')=="view_admins") style="background: #4B49AC !important; color: #fff !important;" @else style="background: #fff !important; color:#4B49AC !important;" @endif class="nav-link" href="{{ url('admin/admins/admin') }}">Admins</a></li>
            <li class="nav-item"><a @if(Session::get('page')=="view_subadmins") style="background: #4B49AC !important; color: #fff !important;" @else style="background: #fff !important; color:#4B49AC !important;" @endif  class="nav-link" href="{{ url('admin/admins/subadmin') }}">Sub admins</a></li>
             <li class="nav-item"> <a @if(Session::get('page')=="view_vendors") style="background: #4B49AC !important; color: #fff !important;" @else style="background: #fff !important; color:#4B49AC !important;" @endif class="nav-link" href="{{ url('admin/admins/vendor') }}">Vendors</a></li>
@@ -91,13 +96,18 @@
          
           
 
-          @endif
-          
+         
         </ul>
       </div>
     </li>
+    @endif
+          
 
+
+    @if(Auth::guard('admin')->user()->type=="admin")
     <li class="nav-item">
+      
+     
       <a class="nav-link " data-toggle="collapse" href="#ui-users" aria-expanded="false" aria-controls="ui-users">
         <i class="bi bi-person"></i>
         &nbsp;&nbsp;
@@ -107,16 +117,28 @@
       <div class="collapse" id="ui-users">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            @if(Auth::guard('admin')->user()->type=="admin")
+            
             <a class="nav-link" href="{{ url('admin/users') }}">Users</a></li>
          
           <li class="nav-item"> <a class="nav-link" href="{{ url('admin/subscribers') }}">Subscribers</a></li>
 
-          @endif
+
           
         </ul>
       </div>
     </li>
+    @endif
+
+  @if(Auth::guard('admin')->user()->type=="vendor")
+  <li class="nav-item">
+    <a   @if(Session::get('page')=="setup_service_profile") style="background: #4B49AC; !important; color: #fff !important" @endif   class="nav-link" href="{{ url('admin/set-up-service-profile') }}">
+      <i class="bi bi-tools"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="menu-title">Service Profile</span>
+    </a>
+  </li>
+
+
+  @endif
     
     
    

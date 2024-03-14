@@ -95,5 +95,8 @@ Route::prefix('/admin')->group(function (){
 
         // Update Vendor Status
         Route::post('update-vendor-status', [AdminController::class, 'updateVendorStatus']);
+
+        // Setting up profile
+        Route::match(['get', 'post'], 'set-up-service-profile', [AdminController::class, 'setupServiceProfile']);
     });
 });

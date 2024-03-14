@@ -598,6 +598,13 @@ class AdminController extends Controller
             return response()->json(['status'=>$status, 'admin_id'=>$data['admin_id']]);
         }
     }
+
+    public function setupServiceProfile(Request $request){
+        Session::put('page', 'setup_service_profile');
+
+        return view('admin.admins.setup_service_profile');
+
+    }
 }
    
    

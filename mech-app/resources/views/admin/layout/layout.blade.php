@@ -23,6 +23,10 @@
   {{-- font awesome --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  {{-- Bootstrap --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ url('admin/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
@@ -69,6 +73,7 @@
   <script src="{{ url('admin/js/template.js') }}"></script>
   <script src="{{ url('admin/js/settings.js') }}"></script>
   <script src="{{ url('admin/js/todolist.js') }}"></script>
+ 
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{{ url('admin/js/dashboard.js') }}"></script>
@@ -78,7 +83,17 @@
   <script src="{{ url('admin/js/custom.js') }}"></script>
   {{-- Sweet alert --}}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   {{-- J query --}}
+   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  {{-- Select 2 --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+ 
 </body>
+<script>
+  $(function(){
+     $('#categories').select2();
+  });
+</script>
 
 </html>
 
