@@ -17,6 +17,7 @@ return new class extends Migration
                 ->constrained('sub_categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->string('service');
             $table->timestamps();
         });
     }

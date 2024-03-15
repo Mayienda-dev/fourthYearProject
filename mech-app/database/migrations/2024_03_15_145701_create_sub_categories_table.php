@@ -17,6 +17,7 @@ return new class extends Migration
                 ->constrained('categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->string('sub_category');
             $table->timestamps();
         });
     }
