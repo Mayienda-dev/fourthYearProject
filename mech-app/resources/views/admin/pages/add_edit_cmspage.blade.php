@@ -39,11 +39,11 @@
                     </div>
                     <div class="form-group">
                       <label for="url">URL*</label>
-                      <input type="text" class="form-control" name="url" id="url" placeholder="Enter page url" @if(!empty($cmspage['url'])) value="{{ $cmspage['url'] }} @endif">
+                      <input type="text" class="form-control" name="url" id="url" placeholder="Enter page url" @if(!empty($cmspage['url'])) value="{{ $cmspage['url'] }}" @endif>
                     </div>
                     <div class="form-group">
                         <label for="description">Description*</label>
-                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter Description" @if(!empty($cmspage['description'])) {{ $cmspage['description'] }} @endif></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter Description" >@if(!empty($cmspage['description'])) {{ $cmspage['description'] }} @endif</textarea>
                       </div>
                       <div class="form-group">
                         <label for="meta_title">Meta Title</label>

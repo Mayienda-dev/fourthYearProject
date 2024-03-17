@@ -42,9 +42,9 @@ $(document).on("click",".updateCmsPageStatus", function(){
         success:function(resp){
             if(resp['status']==0){
 
-                $("#page-"+page_id).html("<i class = 'fa fa toggle-off' style: 'color:grey'; 'font-size: 36px' status: 'Inactive'></i>");
+                $("#page-"+page_id).html("<i class ='fa fa-toggle-off' style='color: grey; font-size: 26px' status='Inactive'></i>");
             }else if(resp['status']==1){
-                $("#page-"+page_id).html("<i class = 'fa fa toggle-on' style:'font-size:36px'; 'color:blue' status: 'Active'></i>");
+                $("#page-"+page_id).html("<i class='fa fa-toggle-on' style='font-size: 26px; color: blue' status='Active'></i>");
 
             }
            
@@ -70,9 +70,9 @@ $(document).on("click",".updateSubadminStatus", function(){
         success:function(resp){
             if(resp['status']==0){
 
-                $("#page-"+subadmin_id).html("<i class = 'fa fa toggle-off' style: 'color:grey'; 'font-size: 36px' status: 'Inactive'></i>");
+                $("#subadmin-"+subadmin_id).html("<i class = 'fa fa-toggle-off' style= 'color:grey; font-size: 26px' status= 'Inactive'></i>");
             }else if(resp['status']==1){
-                $("#page-"+subadmin_id).html("<i class = 'fa fa toggle-on' style:'font-size:36px'; 'color:blue' status: 'Active'></i>");
+                $("#subadmin-"+subadmin_id).html("<i class = 'fa fa-toggle-on' style='font-size:26px; color:blue' status= 'Active'></i>");
 
             }
            
