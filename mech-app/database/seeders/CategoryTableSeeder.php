@@ -16,31 +16,31 @@ class CategoryTableSeeder extends Seeder
         $categoriesRecords = [
             [
                 'id' => 1,
-                'category' => 'mechanical'
+                'category' => 'Mechanical Services'
             ],
             [
               'id' => 2,
-              'category' => 'towing_flatbed'
+              'category' => 'Towing and Flatbed Services'
             ],
             [
                 'id' => 3,
-                'category' => 'consultancy'
+                'category' => 'Consultancy Services'
             ],
             [
                 'id' => 4,
-                'category' => 'electronic_diagnostics'
+                'category' => 'Electronic Diagnostics'
             ],
             [
                 'id' => 5,
-                'category' => 'car_restoration'
+                'category' => 'Car Restoration'
             ],
             [
                 'id' => 6,
-                'category' => 'modding_tuning'
+                'category' => 'Modding and Tuning'
             ],
             [
                 'id' => 7,
-                'category' => 'maintenance'
+                'category' => 'Maintenance Services'
             ],
             ];
 
