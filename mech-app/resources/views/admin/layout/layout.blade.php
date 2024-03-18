@@ -89,11 +89,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
  
 </body>
-<script>
-  $(function(){
-     $('#categories').select2();
-  });
-</script>
+
 
 </html>
 

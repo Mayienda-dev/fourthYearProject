@@ -141,4 +141,24 @@ $(document).on("click", ".updateVendorStatus", function(){
 
    })
 })
+
+// Categories multiple select
+
+  $(function(){
+     $('#categories').select2();
+
+     $('#categories-form').on('submit', function(event){
+        event.preventDefault();
+        var formData = $(this).serialize();
+        var pageId = $('#categories-form').data('profile-id');
+       
+
+        $.ajax({
+            url: "{{route('admin/set-up-service-profile')}}" + (pageId ? '/' + pageId : ''),
+            type: 'post',
+
+        });
+     })
+  });
+
 });

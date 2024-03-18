@@ -599,12 +599,7 @@ class AdminController extends Controller
         }
     }
 
-    public function setupServiceProfile(Request $request){
-        Session::put('page', 'setup_service_profile');
-
-        return view('admin.admins.setup_service_profile');
-
-    }
+   
 }
    
    

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CmsController;
+use App\Http\Controllers\ServicesSetupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,6 +98,6 @@ Route::prefix('/admin')->group(function (){
         Route::post('update-vendor-status', [AdminController::class, 'updateVendorStatus']);
 
         // Setting up profile
-        Route::match(['get', 'post'], 'set-up-service-profile', [AdminController::class, 'setupServiceProfile']);
+        Route::match(['get', 'post'], 'set-up-service-profile/{id?}', [ServicesSetupController::class, 'edit']);
     });
 });

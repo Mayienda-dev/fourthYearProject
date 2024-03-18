@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -32,6 +33,8 @@ class Admin extends Authenticable
     public function vendorPayment(){
         return $this->belongsTo('App\Models\VendorsPaymentDetail', 'vendor_id' );
     }
+
+    
 
 
 
