@@ -114,7 +114,7 @@
           {{-- <button class="btn btn-primary" style="background-color: #D81324;" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
             <a href="{{ url('/service/id') }}">View Garage/Consultancy</a>
           </button> --}}
-          <a href="{{ url('/service/id') }}">
+          <a href="{{ url('/service/'.$service->id) }}">
             <button class="btn btn-primary" style="background-color: #D81324;" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
                 View Garage/Consultancy
           

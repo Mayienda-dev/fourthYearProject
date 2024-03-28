@@ -5,7 +5,7 @@
 <div class="container-xxl service py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-primary text-uppercase">// Our Services //</h6>
+            <h6 class="text-primary text-uppercase">//{{ $categories->garage_name }}//</h6>
             <h1 class="mb-5">Explore Our Services</h1>
         </div>
         <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -118,7 +118,7 @@
                     <p class="text-white mb-0">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
                 </div>
             </div>
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
                 <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
                     <h1 class="text-white mb-4">Book For A Service</h1>
                     <form>
@@ -162,7 +162,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

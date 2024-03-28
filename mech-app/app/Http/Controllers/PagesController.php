@@ -39,10 +39,11 @@ class PagesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
 
-       $categories = Category::get();
+       $categories = VendorsBusinessDetail::findOrFail($id);
+    //    dd($categories);
 
 
         return view('users.pages.show')->with(compact('id', 'categories'));
