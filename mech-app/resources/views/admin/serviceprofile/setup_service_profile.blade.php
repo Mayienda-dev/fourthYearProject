@@ -46,17 +46,18 @@
         @endif
 
         
-            <form class="form-control" id="categories-form" data-profile-id = "{{ isset($id) ? $id : null }}">
+            <form class="forms-sample" id="categories-form" action="{{ url('admin/set-up-service-profile') }}" method="post">
+              @csrf
                 <div class="form-group">
                     
                   
                     <label for="categories">Select Categories of Services:</label>
                     
                   
-                      <select name="categories[]" id="categories" class="form-control" multiple>
+                      <select name="services[]" id="categories" class="form-control" multiple>
                         
                           @foreach($categories as $category)
-                          <option value="{{ $category['category'] }}">{{ $category['category'] }}</option> 
+                          <option value="{{ $category->category }}">{{ $category->category}}</option> 
                           @endforeach
                        
 
@@ -65,9 +66,22 @@
                           
                          
                       </select>
+
+                      
                     
                    
                   </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </div>
+                  
+                  
+                    
+                  
+                 
+      
+               
             </form>
 
        
@@ -76,12 +90,7 @@
               
 
 
-              <div class="form-group">
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>
-            </form>
-
-          </div>
+            
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ class Admin extends Authenticable
     use HasFactory;
     
     protected $guard = 'admin';
+    protected $table = 'admins';
     
     protected $fillable = [
         'name',
@@ -25,13 +26,18 @@ class Admin extends Authenticable
     ];
 
     public function vendorPersonal(){
-        return $this->belongsTo('App\Models\Vendors', 'vendor_id' );
+        return $this->belongsTo('App\Models\Vendors', 'vendors_id' );
     }
     public function vendorBusiness(){
-        return $this->belongsTo('App\Models\VendorsBusinessDetail', 'vendor_id' );
+        return $this->belongsTo('App\Models\VendorsBusinessDetail', 'vendors_id' );
     }
     public function vendorPayment(){
-        return $this->belongsTo('App\Models\VendorsPaymentDetail', 'vendor_id' );
+        return $this->belongsTo('App\Models\VendorsPaymentDetail', 'vendors_id' );
+    }
+
+    public function vendor(): HasOne
+    {
+        return $this->hasOne(Vendors::class);
     }
 
     

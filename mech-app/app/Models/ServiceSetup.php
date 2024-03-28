@@ -10,7 +10,14 @@ class ServiceSetup extends Model
 {
     use HasFactory;
 
-    public function vendors(): BelongsTo
+    protected $table = 'service_setups';
+
+    protected $fillable = [
+        'vendor_id',
+        'services'
+    ];
+
+    public function vendor(): BelongsTo
     {
         return $this->belongsTo(Vendors::class);
     }

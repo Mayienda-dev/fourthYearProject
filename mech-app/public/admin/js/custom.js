@@ -26,6 +26,7 @@ $("#current_pwd").keyup(function(){
 
     })
 });
+});
 
 // Update CMS Page Status
 $(document).on("click",".updateCmsPageStatus", function(){
@@ -52,7 +53,7 @@ $(document).on("click",".updateCmsPageStatus", function(){
             alert("Error");
         }
     })
-})
+});
 
 // Update Subadmin status
 
@@ -80,7 +81,7 @@ $(document).on("click",".updateSubadminStatus", function(){
             alert("Error");
         }
     })
-})
+});
 // Confirm the deletion of CMS Page
 // $(document).on("click",".confirmDelete", function(){
    
@@ -114,7 +115,7 @@ $(document).on("click", ".confirmDelete", function(){
     }
   });
   
-})
+});
 // Update Admin Status
 $(document).on("click", ".updateVendorStatus", function(){
    var status = $(this).children("i").attr("status");
@@ -140,25 +141,39 @@ $(document).on("click", ".updateVendorStatus", function(){
 
 
    })
-})
+});
+// Categories multiple select
+// 
 
 // Categories multiple select
 
-  $(function(){
-     $('#categories').select2();
-
-     $('#categories-form').on('submit', function(event){
-        event.preventDefault();
-        var formData = $(this).serialize();
-        var pageId = $('#categories-form').data('profile-id');
-       
-
-        $.ajax({
-            url: "{{route('admin/set-up-service-profile')}}" + (pageId ? '/' + pageId : ''),
-            type: 'post',
-
-        });
-     })
+$(function(){
+    $('#categories').select2();
+  
+    $('#categories-form').on('submit', function(event){
+       event.preventDefault()
+       var formData = $(this).serialize();
+    
+      
+      
+  
+       $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/admin/set-up-service-profile",
+            type: "post",
+            data: formData,
+            success:function(response){
+               if(response.success){
+                  alert("Data saved succesfully");
+               }
+  
+            }, error:function(xhr){
+               console.log(xhr.responseText);
+            }
+  
+       });
+    });
   });
 
-});

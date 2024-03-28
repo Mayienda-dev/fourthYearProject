@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\ServicesSetupController;
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,13 +19,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('users.welcome');
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function(){
+
+    Route::get('/dashboard', [PagesController::class, 'index']);
+
+    // Specific page viewing
+
+    Route::get('/service/{id}', [PagesController::class, 'show']);
+
+ 
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -97,7 +110,10 @@ Route::prefix('/admin')->group(function (){
         // Update Vendor Status
         Route::post('update-vendor-status', [AdminController::class, 'updateVendorStatus']);
 
-        // Setting up profile
-        Route::match(['get', 'post'], 'set-up-service-profile/{id?}', [ServicesSetupController::class, 'edit']);
+        // Creating a  profile
+       
+
+        // Stroing the newly created resource
+        Route::match(['get', 'post'],'set-up-service-profile', [ServicesSetupController::class, 'create']);
     });
 });

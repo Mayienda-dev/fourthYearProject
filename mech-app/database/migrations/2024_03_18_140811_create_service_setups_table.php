@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained('vendors')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('categories');
+            $table->string('category');
             $table->string('sub_categories');
             $table->string('services');
 

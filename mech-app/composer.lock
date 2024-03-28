@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f30e5805bfcc2e67a48c42ef8083dc6",
+    "content-hash": "8caecf793ff81e8416fe5a2744f721b0",
     "packages": [
         {
             "name": "brick/math",
@@ -1322,6 +1322,76 @@
                 }
             ],
             "time": "2024-02-14T15:11:21+00:00"
+        },
+        {
+            "name": "itsmurumba/laravel-mpesa",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ItsMurumba/laravel-mpesa.git",
+                "reference": "7a853c7920340662c447dcf3dc232fa7b184671d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ItsMurumba/laravel-mpesa/zipball/7a853c7920340662c447dcf3dc232fa7b184671d",
+                "reference": "7a853c7920340662c447dcf3dc232fa7b184671d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "illuminate/support": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+                "php": "^7.1|^8.0|^8.1|^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Itsmurumba\\Mpesa\\MpesaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Mpesa": "Itsmurumba\\Mpesa\\Facades\\Mpesa"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Itsmurumba\\Mpesa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kelvin Murumba",
+                    "email": "kevmurumba@gmail.com"
+                }
+            ],
+            "description": "Laravel Package for Mpesa Daraja API",
+            "keywords": [
+                "daraja",
+                "itsmurumba",
+                "laravel",
+                "laravel 10",
+                "laravel 11",
+                "laravel 5",
+                "laravel 6",
+                "laravel 7",
+                "laravel 8",
+                "laravel 9",
+                "mpesa",
+                "payments"
+            ],
+            "support": {
+                "issues": "https://github.com/ItsMurumba/laravel-mpesa/issues",
+                "source": "https://github.com/ItsMurumba/laravel-mpesa/tree/v1.0.7"
+            },
+            "time": "2024-03-17T14:18:18+00:00"
         },
         {
             "name": "kdbz/kenya-county",

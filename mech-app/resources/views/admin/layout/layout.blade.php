@@ -26,7 +26,7 @@
   {{-- Bootstrap --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+  <link  href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ url('admin/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
@@ -78,18 +78,22 @@
   <!-- Custom js for this page-->
   <script src="{{ url('admin/js/dashboard.js') }}"></script>
   <script src="{{ url('admin/js/Chart.roundedBarCharts.js') }}"></script>
+  <script src="{{ url('admin/js/custom.js') }}"></script>
+  
   <!-- End custom js for this page-->
   {{-- Custom js --}}
-  <script src="{{ url('admin/js/custom.js') }}"></script>
-  {{-- Sweet alert --}}
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   {{-- J query --}}
-   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  {{-- Select 2 --}}
+  {{-- J query --}}
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
  
+  
+  {{-- Sweet alert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  {{-- Select 2 --}}
+ 
+ 
 </body>
-
 
 </html>
 
